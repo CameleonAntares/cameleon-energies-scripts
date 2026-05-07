@@ -591,6 +591,12 @@ function animateScore(targetScore) {
 }
 
 // ===== CALENDLY =====
+    document.body.style.overflow = 'hidden';
+}
+    document.body.style.overflow = '';
+}
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCalendly(); });
 
 // ===== AUTOCOMPLETE SIRENE =====
 let autocompleteTimeout;
