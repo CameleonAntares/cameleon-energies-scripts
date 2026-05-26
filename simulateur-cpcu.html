@@ -400,10 +400,9 @@
       </div>
     </div>
     <p class="disclaimer">⚠️ Simulation indicative basée sur les données publiques CPCU et France Chaleur Urbaine (barème 2022, tarifs 2024-2025, aide CEE valable jusqu'au 31/12/2025). Les montants réels dépendent d'une étude technique personnalisée CPCU. La distance au réseau n'est pas vérifiée automatiquement.</p>
-  </div>
 
   <!-- Lead Capture Form -->
-  <div class="lead-form-card" id="leadFormCard" style="display:none;">
+  <div class="lead-form-card" id="leadFormCard">
     <h3>📩 Recevoir une étude personnalisée</h3>
     <p class="lf-subtitle">Nos experts Cameleon Energies analysent votre situation et vous accompagnent dans le processus de raccordement CPCU — gratuitement et sans engagement.</p>
 
@@ -443,6 +442,7 @@
     </button>
     <div class="lead-form-status" id="leadFormStatus"></div>
   </div>
+  </div><!-- /step4 -->
 
 </div>
 
@@ -720,7 +720,6 @@
     `;
 
     document.getElementById('resultsContent').innerHTML = html;
-    document.getElementById('leadFormCard').style.display = 'block';
     setTimeout(() => {
       document.querySelectorAll('.chart-bar-fill').forEach(bar => { bar.style.width = bar.dataset.target; });
     }, 100);
