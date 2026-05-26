@@ -316,13 +316,18 @@ const state = {
   // === Autocomplete BAN ===
   let abortController = null, debounceTimer = null;
 
-  document.getElementById('addressInput').addEventListener('input', function() {
-    const q = this.value.trim();
-    if (q.length < 5) { hideDropdown(); return; }
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => fetchAddresses(q), 300);
-  });
-  document.addEventListener('click', e => { if (!e.target.closest('.autocomplete-wrapper')) hideDropdown(); });
+  // Null-safe init: retries until the HtmlEmbed renders addressInput in the DOM
+  (function initAutocomplete() {
+    const addrInput = document.getElementById('addressInput');
+    if (!addrInput) { setTimeout(initAutocomplete, 100); return; }
+    addrInput.addEventListener('input', function() {
+      const q = this.value.trim();
+      if (q.length < 5) { hideDropdown(); return; }
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => fetchAddresses(q), 300);
+    });
+    document.addEventListener('click', e => { if (!e.target.closest('.autocomplete-wrapper')) hideDropdown(); });
+  })();
 
   async function fetchAddresses(q) {
     if (abortController) abortController.abort();
